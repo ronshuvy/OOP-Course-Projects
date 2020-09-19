@@ -1,0 +1,67 @@
+ronshuvy
+
+
+=============================
+=      File description     =
+=============================
+filesprocessing
+    DirectoryProcessor.java - Manager class.
+    Section.java - A class represents a section of commands.
+    Type1Exception.java
+    Type2Exception.java
+    InvalidUsageException.java
+
+    filtering
+        Filter.java - A class represents a filter.
+        FilterFactory.java - A factory of filter instances
+        BadFilterNameException.java
+        BadFilterParameterException.java
+        BadBooleanValueException.java
+        NegativeSizeException.java
+        UnorderedRangeException.java
+    ordering
+        Order.java - A class represents an order type.
+        OrderFactory.java - A factory of order instances.
+        Sorter.java - A sorting class.
+        BadOrderNameException.java
+    parsing
+        Parser.java - A class for parsing commands file.
+        BadCommandFileFormatException.java
+        BadFilterSectionNameException.java
+        BadOrderSectionNameException.java
+        BadSubSectionNameException.java
+
+=============================
+=          Design           =
+=============================
+
+Choice : Dividing the program into 3 sub-packages : parsing, filtering and ordering.
+         Each sub-package is responsible for a different tasks.
+Reason : In order to maintain a modular system, and to follow the single responsibility principle,
+         such that each module has a single task to take care of.
+
+Choice : Using factory design pattern for creating Filter and Order object.
+Reason : Following the single-choice principle, each factory contains the exhaustive list of different types
+         (of filter/order).
+
+Choice : Defining a class for each piece of information. A file section, for example, is represented as an
+         instance of the 'Section' class ,which contains a Filter type and Order type as data members.
+Reason : Object-oriented design.
+
+=============================
+=  Implementation details   =
+=============================
+
+Exception hierarchy :
+I have implemented a full exception hierarchy, from the exception general type (I or II), to the most
+specific and detailed one (which describes the exact issue).
+For example, if a given size is negative, that results in throwing the following exception :
+NegativeSizeException extends BadFilterParameterException extends Type1Exception.
+
+Considerations :
+Easier to debug for errors, and much simpler to catch an exception.
+
+Q: How did you sort your matched files? Did you use a data structure for this purpose? If so,
+what data structure and why?
+A : I stored the matched files inside a java.util.List data structure, which is dynamic and easy to use, and
+    sorted the list with MergeSort algorithm.
