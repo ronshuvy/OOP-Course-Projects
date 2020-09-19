@@ -1,0 +1,29 @@
+ronshuvy
+
+
+=============================
+=      File description     =
+=============================
+Book.java - implements the Book class.
+Patron.java - implements the Patron class.
+Library.java - implements the Library class.
+
+=============================
+=          Design           =
+=============================
+All credits belongs to the course staff.
+
+=============================
+=  Implementation details   =
+=============================
+As for the Book and Patron classes, the implementation is pretty straightforward.
+In Library class,
+The books is stored inside array (with capacity of the maximum books capacity).
+For that reason, I choosed to define the book's array index as its ID, and thus enjoying access/search
+(by ID) in constant time. In addition, I stored the amount of books which currently exist in the library,
+to avoid superfluous loop iterations each time we traverse the book list.
+The exact same implementation applies for registered patrons.
+
+=============================
+=    Answers to questions   =
+=============================

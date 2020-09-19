@@ -1,0 +1,52 @@
+ronshuvy
+
+
+=============================
+=      File description     =
+=============================
+Storage.java - abstract class representing a storage.
+Locker.java - implements a Locker.
+LongTermStorage.java - implements a Long-term Storage.
+Spaceship.java - implements the user spaceship class.
+LockerTest.java - test for Locker class.
+LongTermStorage.java - test for LongTermStorage class.
+SpaceshipTest.java - test for Spaceship class.
+SpaceshipDepository.java - tests for Spaceship Depository.
+BoopingSite.java - implements BoopingSite class.
+BoopingSiteTest.java - test for BoopingSite class.
+
+=============================
+=          Design           =
+=============================
+3.1 Spaceship Depository
+
+Decision :
+- using inheritance by implementing an abstract class called 'Storage', from which 'Locker' and
+'LongTermStorage' inherits from.
+Reasons :
+- since both classes shares a number of methods with the exact implementation, and both classes are type of
+storages.
+
+3.2 Hotel Search Engine
+
+=============================
+=  Implementation details   =
+=============================
+
+3.1 Spaceship Depository
+
+Decision :
+- storing items information inside a HashMap<String, number> for both classes (Locker & Lts).
+Reasons :
+- HashMap as data structure because we want to map between items and their quantity inside the storage.
+- String as key because its easy to implement getters functions
+
+3.2 Hotel Search Engine
+
+Decision :
+- using the empty dataset for testing null data handling
+- using the small dataset for testing wrong input
+- using the big dataset for testing all kinds of sorting tasks
+Reasons :
+- big dataset is not necessary for wrong input checking and null handling
+- big dataset is important for verifying successful sorting tasks

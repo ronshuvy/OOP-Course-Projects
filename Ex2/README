@@ -1,0 +1,65 @@
+ronshuvy
+
+
+=============================
+=      File description     =
+=============================
+SpaceShipFactory.java - implements the SpaceShipFactory.
+SpaceShip.java - implements general spaceship class.
+HumanSpaceShip.java - implements the user spaceship class.
+BasherSpaceShip.java - implements busher spaceship class.
+AggressiveSpaceShip.java - implements an aggressive spaceship class.
+RunnerSpaceShip.java - implements runner spaceship class.
+DrunkardSpaceShip.java - implements drunkard spaceship class.
+SpecialSpaceShip.java - implements special spaceship class.
+
+=============================
+=          Design           =
+=============================
+Consider the following statements :
+* Each type of spaceship is represented by its own class.
+* Spaceship types differs from each other by only two aspects : behaviour (doAction method) and GUI image.
+* Each spaceship type is a spaceship. For Example, RunnerSpaceShip is a SpaceShip.
+* There is no reason to allow SpaceShip, since SpaceShip is lack of specific behaviour.
+
+After taking all of these lines into consideration, I decided to use inheritance by declaring
+'SpaceShip' as an abstract class is the native solution for this specific of problem.
+
+Design advantages -
+* Code reuse - Most of all spaceship types methods has the exact same implementation, so extending the types
+from 'SpaceShip' saves us A LOT of code repetition.
+
+* Extensibility - When we use inheritance and is-a relation in particular, we can override methods in
+sub-classes easily and thus extend/modify in faster and simpler way.
+
+* Modularity - Each function has only one well-defined purpose.
+
+* Intuitiveness and understandability - The program is pretty straightforward - all the spaceship types
+is inherited from the abstract class 'SpaceShip'. In addition, most of the implementation takes place in the
+abstract class.
+
+Design disadvantages -
+
+* Extending the API - because doAction() in sub-class requires access to its super-class data member, we must
+use protected/public access modifiers.
+
+=============================
+=  Implementation details   =
+=============================
+* Constants - In total, the game has many constants. At first, I wanted to use a class of constants, but after
+reading in-depth about this topic, I decided that is better to define the constants in each seperate class as
+private static members. (Mainly to keep the Minimal API)
+
+* Methods - All spaceship types methods, excluding doAction, is implemented inside the abstract class
+'SpaceShip'.
+
+* doAction - Although this method is largely implemented in each spaceship type, there are some routine tasks
+which relevant in all the existing types, so I decided to implement this tasks also in the abstract
+class, and use super keyword. (Useful for keep the API minimal and prevent code repetition).
+
+* Drunkard implementation - The pilots are drunk! one of them has fallen asleep on the right turn button, and
+the second one is pushing all the buttons RANDOMLY! (using Java random class).
+
+* Special implementation description - Similar to RunnerSpaceShip (run away from the closest ship), but if the
+ship is close enough to HumanSpaceShip it will transfer its energy tp the user :)
+

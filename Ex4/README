@@ -1,0 +1,68 @@
+ronshuvy
+
+
+=============================
+=      File description     =
+=============================
+SimpleHashSet.java -  A superclass for implementations of hash-sets implementing the SimpleSet interface.
+StringList.java - A wrapper-class which contains LinkedList<String> object and delegates methods to it.
+OpenHashSet.java - A hash-set based on chaining.
+ClosedHashSet.java - A hash-set based on closed-hashing with quadratic probing.
+CollectionFacadeSet.java - Wraps an underlying Collection
+SimpleSetPerformanceAnalyzer.java - Measures the run-times of a different sets.
+
+=============================
+=          Design           =
+=============================
+
+=============================
+=  Implementation details   =
+=============================
+In order to implement OpenHashSet, I used a wrapper class for a LinkedList object, which delegates methods to
+LinkedList's methods.
+
+=============================
+=          Q & A            =
+=============================
+
+Q : How did you implement OpenHashSet’s table?
+A : By using a wrapper class, called 'StringList', for LinkedList<String> object, and delegates each method
+    call to the corresponding LinkedList's method.
+
+Q : How did you implement the deletion mechanism in ClosedHashSet?
+A : Using "lazy deletion". The values are stored inside an array of Strings, and each slot can holds 3 types
+    of values : null (slot is empty), string (slot is occupied) and DELETED_SLOT, which basically is a flag
+    to mark a slot as deleted.
+
+OpenHashSet's bad results for data1.txt explanation :
+Since all elements are stored in a single LinkedList (specific to those of data1),
+and the LinkedList's contains takes O(n), each addition takes linear time.
+
+ClosedHashSet's bad results data1.txt explanation :
+The input file cause maximum collision, which results in linear time of element searching (contains) and free
+slot searching.
+
+OpenHashSet strengths : Easy removal (no need for deleted markings), easy to implement,
+                        uses less memory if the record is large compared.
+OpenHashSet weaknesses : Expensive search time when the number of collisions increases
+
+ClosedHashSet strengths : Less memory requires for small record size.
+ClosedHashSet weaknesses : Expensive search time when the number of collisions increases
+
+Q : Which would you use for which purposes?
+A : OpenHashSet use cases - hash tables with large records
+    ClosedHashSet use cases - hash tables with small records that can be stored within the table
+
+Q : How did your two implementations compare between themselves?
+A : For data1 (max collisions) OpenHashSet did much better than ClosedHashSet,
+    and the opposite goes for data2.
+
+Q : How did your implementations compare to Java’s built in HashSet?
+A : OpenHashSet and ClosedHashSet presents poor performance with respect to HashSet.
+
+Q : Did you find java’s HashSet performance on data1.txt surprising? Can you explain it?
+A : A little bit of surprise.
+    It turns out that Java 8 hash elements use balanced trees instead of linked lists after a certain
+    threshold is reached. It starts with storing Entry objects in linked list but after the number of items in
+     a hash becomes larger than a certain threshold, the hash will change from using a linked list to a
+      balanced tree, which will improve the worst case performance from O(n) to O(log n).
